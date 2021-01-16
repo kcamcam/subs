@@ -17,8 +17,8 @@ jobs:
           --health-timeout 5s
           --health-retries 5
     steps:
-      - uses: actions/checkout@v2
       # RUBY
+      - uses: actions/checkout@v2
       - name: Setup Ruby
         uses: actions/setup-ruby@v1
         with:
@@ -27,11 +27,27 @@ jobs:
       # BUNDLER
       - name: Setup Bundler
         run: gem install bundler:2.2.5
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
       # NODE
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
           node-version: 14.2.0
+      - name: Yarn Cache
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get cacheFolder)"
+      - uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       # RAILS
       - name: Setup Rails
         env:
