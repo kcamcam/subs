@@ -1,24 +1,22 @@
-# README
+[![BCH compliance](https://bettercodehub.com/edge/badge/kcamcam/subs?branch=master&token=d08e95874186b52849dd864c35495d31829e0dc9)](https://bettercodehub.com/)
+# Subs
+A subscriptions tracker.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# About
+- Ruby v3.0.0
+- Rails v 6.0.3
+- Job Scheduler: Sidekiq
+- Test Suite: RSpec
 
-Things you may want to cover:
+# Development
+```bash
+rails s
+sidekiq
+ruby ./bin/webpack-dev-server9
+```
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Test
+```bash
+rspec
+```
+# Production
