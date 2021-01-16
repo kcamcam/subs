@@ -21,5 +21,6 @@ ruby ./bin/webpack-dev-server
 # Test
 ```bash
 rspec
+open coverage/index.html
 ```
 # Production
