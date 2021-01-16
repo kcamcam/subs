@@ -36,10 +36,10 @@ group :development, :test do
   # Testing Framework
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem 'bundler-audit', require: false
 end
 
 group :test do
-  gem 'bundler-audit', require: false
   gem 'simplecov', require: false
   gem 'codecov', require: false
 end
