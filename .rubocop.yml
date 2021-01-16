@@ -1,0 +1,58 @@
+# https://docs.rubocop.org/rubocop/
+
+# Default is 2
+Layout/IndentationWidth:
+  Description: 'Use 2 spaces for indentation.'
+  Width: 2
+
+# Default is true (var = if something else something else)
+Style/ConditionalAssignment:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+# Default is 80
+Layout/LineLength:
+  Max: 120
+
+# Disable the check (http://wiki.c2.com/?AbcMetric)
+Metrics/AbcSize:
+  Enabled: false
+
+# Default is 25
+Metrics/BlockLength:
+  Max: 40
+
+# Default is 100
+Metrics/ClassLength:
+  Max: 100
+
+# Default is 6
+Metrics/CyclomaticComplexity:
+  Max: 6
+
+# Default is 50
+Metrics/MethodLength:
+  Max: 50
+
+# Default is 7
+Metrics/PerceivedComplexity:
+  Max: 7
+
+# Do not enforce documentation since people will put useless comments just to make the warning go away
+Style/Documentation:
+  Enabled: false
+
+# Warning popping in cases where this should not be applied
+Style/GuardClause:
+  Enabled: true
+
+# Underscores in numeric values should not be forced upon
+Style/NumericLiterals:
+  Enabled: false
+
+# Allow to omit the error class
+Style/RescueStandardError:
+  Enabled: false
+
