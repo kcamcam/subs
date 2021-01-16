@@ -72,6 +72,8 @@ jobs:
       - name: RSpec
         run: bundle exec rspec
       # LINTER
+      - name: Install Rubocop
+        run: gem install rubocop
       - name: Linter
         run: |
           bin/rubocop app
