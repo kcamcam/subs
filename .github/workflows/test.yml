@@ -74,7 +74,7 @@ jobs:
       # LINTER
       - name: Linter
         run: |
-          bin/rubocop app --parallel
+          bin/rubocop app
       # AUDIT
       - name: Audit Packages
         run: |
