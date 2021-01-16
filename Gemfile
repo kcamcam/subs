@@ -39,6 +39,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'bundler-audit', require: false
   gem 'simplecov', require: false
   gem 'codecov', require: false
 end
