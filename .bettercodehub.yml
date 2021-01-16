@@ -1,6 +1,6 @@
 languages:
 - ruby
 include:
-- /app
-- /lib
-- /spec
+- /app/*
+- /lib/*
+- /spec/*
