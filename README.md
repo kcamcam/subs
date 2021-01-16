@@ -11,6 +11,7 @@ A subscriptions tracker.
 - Rails v 6.0.3
 - Job Scheduler: Sidekiq
 - Test Suite: RSpec
+- Styling: Bootstrap v5
 
 # Development
 ```bash
