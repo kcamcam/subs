@@ -3,3 +3,5 @@ languages:
 exclude:
 - /app/javascript/.*
 - /config/.*
+- /spec/spec_helper.rb
+- /spec/rails_helper.rb
