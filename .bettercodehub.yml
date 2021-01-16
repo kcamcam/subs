@@ -1,0 +1,6 @@
+languages:
+- ruby
+include:
+- /app
+- /lib
+- /spec
