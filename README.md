@@ -1,6 +1,7 @@
+![Test](https://github.com/kcamcam/subs/workflows/Test/badge.svg)
 [![BCH compliance](https://bettercodehub.com/edge/badge/kcamcam/subs?branch=master&token=d08e95874186b52849dd864c35495d31829e0dc9)](https://bettercodehub.com/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/faa5692d537fa10bc4ce/maintainability)](https://codeclimate.com/github/kcamcam/subs/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/faa5692d537fa10bc4ce/test_coverage)](https://codeclimate.com/github/kcamcam/subs/test_coverage)
+[![codecov](https://codecov.io/gh/kcamcam/subs/branch/master/graph/badge.svg?token=EG1B7MIITW)](https://codecov.io/gh/kcamcam/subs)
 
 # Subs
 A subscriptions tracker.

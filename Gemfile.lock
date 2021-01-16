@@ -227,6 +227,7 @@ DEPENDENCIES
   rspec-rails
   sass-rails (>= 6)
   sidekiq
+  simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
