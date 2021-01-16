@@ -1,6 +1,6 @@
 require 'simplecov'
 SimpleCov.start
-unless Rails.env.development?
+unless ENV['RAILS_ENV'] == 'development'
   require 'codecov'
   SimpleCov.formatter = SimpleCov::Formatter::Codecov
 end
