@@ -23,7 +23,6 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.0.0
-          bundler-cache: true
       # BUNDLER
       - name: Setup Bundler
         run: gem install bundler:2.2.5
