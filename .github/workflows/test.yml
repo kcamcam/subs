@@ -2,7 +2,7 @@ name: Test
 on: [push, pull_request]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04 #ubuntu-latest
     services:
       postgres:
         image: postgres:10
