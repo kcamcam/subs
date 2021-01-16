@@ -1,6 +1,5 @@
 languages:
 - ruby
-include:
-- /app/*
-- /lib/*
-- /spec/*
+exclude:
+- /app/javascript/.*
+- /config/.*
