@@ -29,8 +29,8 @@ jobs:
         run: gem install bundler-audit
       - name: Audit Dependencies
         run: |
-          bin/bundler-audit --update
-          bin/brakeman -q -w2
+          bundler-audit --update
+          brakeman -q -w2
   unit-tests:
     name: RSpec
     runs-on: ubuntu-20.04 # ubuntu-latest
@@ -47,25 +47,40 @@ jobs:
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.0.0
-      - name: Install Postgres Client
-        run: sudo apt-get install libpq-dev
-      - name: Ruby gems cache
+      - name: Gem Cache
         uses: actions/cache@v2
         with:
           path: vendor/bundle
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
-      - name: Install bundler
+      - name: Install Bundler
         run: gem install bundler
-      - name: Install Dependencies
-        run: bundle install --path vendor/bundle
-      - name: Create database
+      - name: Install Gems
+        run: bundle install --path vendor/bundle --local deployment 'false'
+      - name: Install Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.2.0
+      - name: Yarn Cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: JS package cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install JS Packages
+        run: yarn install --pure-lockfile
+      - name: Install Rails
         env:
           RAILS_ENV: test
         run: |
+          sudo apt-get install libpq-dev
           cp config/database.github.yml config/database.yml
           bundle exec rails db:create RAILS_ENV=test
           bundle exec rails db:migrate RAILS_ENV=test
       - name: Run RSpec
-        run: bundle exec rake # rspec
+        run: bundle exec rspec
