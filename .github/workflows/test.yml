@@ -25,8 +25,11 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.0.0
-      - name: Install Bundler Audit
-        run: gem install bundler-audit
+      - name: Install Bundler Audit & Brakeman
+        run: |
+          gem install bundler:2.2.5
+          gem install bundler-audit
+          gem install brakeman
       - name: Audit Dependencies
         run: |
           bundler-audit --update
