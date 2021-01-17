@@ -8,12 +8,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Setup Ruby
-        uses: actions/setup-ruby@v2
+        uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.0.0
       - name: Install Rubocop
         run: gem install rubocop
-      - name: Run linter
+      - name: Run Rubocop
         run: rubocop app
   unit-tests:
     name: RSpec
@@ -29,7 +29,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - uses: actions/setup-ruby@v2
+      - uses: actions/setup-ruby@v1
         with:
           ruby-version: 3.0.0
       - name: Install Postgres Client
@@ -50,5 +50,10 @@ jobs:
         run: |
           bundler exec rails db:create RAILS_ENV=test
           bundler exec rails db:migrate RAILS_ENV=test
-      - name: Run tests
+      - name: Run RSpec
         run: bundler exec rake # rspec
+      - name: Audit Packages
+        run: |
+          gem install bundler-audit
+          bin/bundler-audit --update
+          bin/brakeman -q -w2
