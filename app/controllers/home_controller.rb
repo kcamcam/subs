@@ -1,3 +1,7 @@
 class HomeController < ApplicationController
-  def index; end
+  # before_action :authenticate_user!
+
+  def index
+    @current_user = session[:userinfo]&.deep_symbolize_keys
+  end
 end
