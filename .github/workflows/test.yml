@@ -57,7 +57,7 @@ jobs:
       - name: Install Bundler
         run: gem install bundler
       - name: Install Gems
-        run: bundle install --path vendor/bundle --local deployment 'false'
+        run: bundle install --path vendor/bundle
       - name: Install Node
         uses: actions/setup-node@v1
         with:
