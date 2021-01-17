@@ -17,7 +17,6 @@ jobs:
         run: rubocop app
   unit-tests:
     name: RSpec
-    needs: linting-tests # require linting to pass first
     runs-on: ubuntu-20.04 # ubuntu-latest
     services:
       postgres:
@@ -41,19 +40,19 @@ jobs:
           key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gems-
+      - name: Install bundler
+        run: gem install bundler
       - name: Install Dependencies
-        run: |
-          gem install bundler
-          bundle config path vendor/bundle
-          bundle install
+        run: bundle install --path vendor/bundle
       - name: Create database
         run: |
-          bundler exec rails db:create RAILS_ENV=test
-          bundler exec rails db:migrate RAILS_ENV=test
+          bundle exec rails db:create RAILS_ENV=test
+          bundle exec rails db:migrate RAILS_ENV=test
       - name: Run RSpec
-        run: bundler exec rake # rspec
+        run: bundlerexec rake # rspec
+      - name: Install Bundler Audit
+        run: gem install bundler-audit
       - name: Audit Packages
         run: |
-          gem install bundler-audit
           bin/bundler-audit --update
           bin/brakeman -q -w2
