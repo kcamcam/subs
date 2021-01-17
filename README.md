@@ -9,14 +9,37 @@ A subscriptions tracker.
 # About
 - Ruby v3.0.0
 - Rails v 6.0.3
-- Job Scheduler: Sidekiq
-- Test Suite: RSpec
-- Styling: Bootstrap v5
+- Postgres 13.1
+- Sidekiq 6.1.2 (Redis 6.0.10)
+- Bootstrap v5
+
+Ruby  
+```bash
+# rvm list
+rvm get stable
+rvm install ruby-3.0.0
+rvm use 3.0.0
+```
+
+Redis  
+```bash
+# redis-server --version
+brew install redis
+brew services start redis
+```
+
+Postgres  
+```bash
+# psql --version
+brew install postgre
+brew services start postgres
+```
 
 # Development
 ```bash
 rails s
 sidekiq
+# optional
 ruby ./bin/webpack-dev-server
 ```
 
