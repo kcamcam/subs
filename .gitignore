@@ -40,3 +40,5 @@ dump.rdb
 
 # Ignore Coverage Results
 /coverage
+
+/config/credentials/production.key
