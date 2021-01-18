@@ -12,6 +12,7 @@ A subscriptions tracker.
 - Postgres 13.1
 - Sidekiq 6.1.2 (Redis 6.0.10)
 - Bootstrap v5
+- ImageMagick v7.0.10
 
 Ruby  
 ```bash
@@ -33,6 +34,12 @@ Postgres
 # psql --version
 brew install postgre
 brew services start postgres
+```
+
+Image Magick
+```bash
+# convert -version
+brew install imagemagick
 ```
 
 # Development
