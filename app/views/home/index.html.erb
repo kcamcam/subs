@@ -1,5 +1,5 @@
 <h1>Subs</h1>
-
+<%= image_tag 'calendar.png' %>
 <% if @current_user %>
   <img src="<%= @current_user.dig(:info, :image) %>" class="img-thumbnail rounded-circle" alt="profile picture">
   <h2><%= @current_user.dig(:info, :nickname) %></h2>

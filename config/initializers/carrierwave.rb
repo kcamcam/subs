@@ -12,4 +12,5 @@ CarrierWave.configure do |config|
   config.asset_host = 'nyc3.digitaloceanspaces.com'
   config.fog_attributes = { 'Cache-Control' => 'max-age=315576000' }
   config.fog_attributes = { cache_control: "public, max-age=#{365.days.to_i}" }
+  config.enable_processing = false if Rails.env.test?
 end
