@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :users
   # SIDEKIQ
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
 
   # SUBSCRIPTIONS
   resources :brands
+
+  # USERS
+  get 'profile', to: 'users#profile'
 
   root 'home#index'
 end
