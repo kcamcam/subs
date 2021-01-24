@@ -1,5 +1,8 @@
 # https://docs.rubocop.org/rubocop/
 
+AllCops:
+    SuggestExtensions: false
+
 # Default is 2
 Layout/IndentationWidth:
   Description: 'Use 2 spaces for indentation.'
