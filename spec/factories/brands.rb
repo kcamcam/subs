@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :brand do
-    image { "calendar.png" }
-    name { "MyString" }
-    info { "MyString" }
-    category { "MyString" }
+    id { 1 }
+    image { 'calendar.png' }
+    name { 'Name' }
+    info { 'Info' }
+    category { 'Category' }
   end
 end

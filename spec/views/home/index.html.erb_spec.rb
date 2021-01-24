@@ -1,5 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "home/index.html.erb", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe 'home/index', type: :view do
+  it 'renders the home page' do
+    render
+    assert_select 'h1', text: 'Subs', count: 1
+  end
 end
