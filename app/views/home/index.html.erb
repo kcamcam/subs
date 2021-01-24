@@ -1,10 +1,7 @@
 <h1>Subs</h1>
-<%= image_tag 'calendar.png' %>
-<% if @current_user %>
-  <img src="<%= @current_user.dig(:info, :image) %>" class="img-thumbnail rounded-circle" alt="profile picture">
-  <h2><%= @current_user.dig(:info, :nickname) %></h2>
-  <pre><%= JSON.pretty_generate(@current_user.dig(:extra, :raw_info)) %></pre>
-  <%= button_to 'Logout', logout_path, method: :get, class: 'btn btn-danger' %>
-<% else %>
-  <%= button_to 'Login', 'auth/auth0', method: :post, class: 'btn btn-primary' %>
-<% end %>
+
+
+<img src="<%= @current_user.dig(:info, :image) %>" class="img-thumbnail rounded-circle" alt="profile picture">
+<h2><%= @current_user.dig(:info, :nickname) %></h2>
+<pre><%= JSON.pretty_generate(@current_user.dig(:extra, :raw_info)) %></pre>
+<%= button_to 'Logout', logout_path, method: :get, class: 'btn btn-danger' %>

@@ -6,7 +6,7 @@ module Auth0Helper
     if user_signed_in?
       @current_user = session[:userinfo]&.deep_symbolize_keys
     else
-      redirect_to root_path
+      redirect_to login_path, info: 'Please login first.'
     end
   end
 

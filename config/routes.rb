@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'auth/auth0/callback' => 'auth0#callback'
   get 'auth/failure' => 'auth0#failure'
   get 'logout', to: 'auth0#logout'
+  get 'login', to: 'auth0#login'
 
   # SUBSCRIPTIONS
   resources :brands
