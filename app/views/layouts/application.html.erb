@@ -10,8 +10,11 @@
   </head>
 
   <body>
-    <%= link_to 'home', root_path %>
-    <%= link_to 'brands', brands_path %>
-    <%= yield %>
+    <div class="container py-2">
+      <%= render 'layouts/flash' %>
+      <%= link_to 'home', root_path %>
+      <%= link_to 'brands', brands_path %>
+      <%= yield %>
+    </div>
   </body>
 </html>
