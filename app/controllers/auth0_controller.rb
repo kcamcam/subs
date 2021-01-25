@@ -4,7 +4,7 @@ class Auth0Controller < ApplicationController
   def callback
     # This stores all the user information that came from Auth0 and the IdP
     session[:userinfo] = request.env['omniauth.auth']
-    User.first_or_create(uid: current_user[:uid])
+    User.first_or_create(uid: session[:userinfo][:uid])
     # Redirect to the URL you want after successful auth
     redirect_to root_path
   end

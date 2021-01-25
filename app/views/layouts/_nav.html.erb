@@ -1,0 +1,9 @@
+<%= link_to 'Home', root_path, class: 'btn btn-sm btn-primary' %>
+<%= link_to 'Brands', brands_path, class: 'btn btn-sm btn-primary' %>
+<% if user_signed_in? %>
+  <%= link_to profile_path do %>
+    <img src="<%= current_user.dig(:info, :image) %>" alt="profile picture" class="float-end rounded-circle" height="50px">
+  <% end %>
+<% else %>
+  <%= button_to 'Login', 'auth/auth0', method: :post, class: 'btn btn-sm btn-primary float-end' %>
+<% end %>

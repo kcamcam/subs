@@ -11,10 +11,8 @@
 
   <body>
     <div class="container py-2">
+      <%= render 'layouts/nav' %>
       <%= render 'layouts/flash' %>
-      <%= link_to 'home', root_path %>
-      <%= link_to 'brands', brands_path %>
-      <%= link_to 'profile', profile_path %>
       <%= yield %>
     </div>
   </body>
