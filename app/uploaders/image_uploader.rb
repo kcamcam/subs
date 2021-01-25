@@ -44,7 +44,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # only allow images to be uploaded
   def content_type_whitelist
-    /image\//
+    %r{image/}
   end
 
   # Override the filename of the uploaded files:

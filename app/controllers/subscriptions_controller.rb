@@ -1,5 +1,5 @@
 class SubscriptionsController < ApplicationController
-  before_action :set_subscription, only: [:show, :edit, :update, :destroy]
+  before_action :set_subscription, only: %w[show edit update destroy]
 
   # GET /subscriptions
   # GET /subscriptions.json

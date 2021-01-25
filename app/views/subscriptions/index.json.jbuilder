@@ -1,1 +1,1 @@
-json.array! @subscriptions, partial: "subscriptions/subscription", as: :subscription
+json.array! @subscriptions, partial: 'subscriptions/subscription', as: :subscription
