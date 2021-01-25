@@ -13,16 +13,23 @@ class SubscriptionsController < ApplicationController
 
   # GET /subscriptions/new
   def new
+    redirect_to brands_path unless params[:brand_id]
+
+    @brand = Brand.find(params[:brand_id])
     @subscription = Subscription.new
   end
 
   # GET /subscriptions/1/edit
-  def edit; end
+  def edit
+    @brand = Brand.find(@subscription.brand_id)
+  end
 
   # POST /subscriptions
   # POST /subscriptions.json
   def create
     @subscription = Subscription.new(subscription_params)
+    @brand = @subscription.brand
+    @subscription.user = User.find_by(uid: @current_user[:uid])
 
     respond_to do |format|
       if @subscription.save
@@ -68,6 +75,6 @@ class SubscriptionsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def subscription_params
-    params.require(:subscription).permit(:brand_id, :user_id, :amount, :frequency, :unit)
+    params.require(:subscription).permit(:brand_id, :amount, :frequency, :unit)
   end
 end

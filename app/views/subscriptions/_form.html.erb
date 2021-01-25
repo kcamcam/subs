@@ -11,10 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :brand_id %>
-    <%= form.text_field :brand_id %>
-  </div>
+  <%= image_tag @brand.image_url(:preview) %>
+  <span class="h1"><%=@brand.name  %></span>
+  <%= form.hidden_field :brand_id, value: @brand.id %>
 
   <div class="field">
     <%= form.label :amount %>

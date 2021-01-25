@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_002734) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.bigint "brand_id", null: false
+    t.bigint "brand_id"
     t.bigint "user_id", null: false
     t.decimal "amount"
     t.integer "frequency"

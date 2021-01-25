@@ -25,7 +25,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Resize to fit keeps the original aspect ratio.
   process convert: 'png'
-  process resize_to_fit: [800, 800]
+  process resize_to_fit: [400, 400]
 
   # Resize to fill crops if the aspect ratio requires it.
   version :thumb do

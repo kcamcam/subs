@@ -5,8 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Brand</th>
-      <th>User</th>
+      <th colspan="2">Brand</th>
       <th>Amount</th>
       <th>Frequency</th>
       <th>Unit</th>
@@ -17,8 +16,8 @@
   <tbody>
     <% @subscriptions.each do |subscription| %>
       <tr>
-        <td><%= subscription.brand_id %></td>
-        <td><%= subscription.user_id %></td>
+        <td><%= image_tag subscription.brand.image_url(:thumb), class: 'rounded' %></td>
+        <td><%= subscription.brand.name %></td>
         <td><%= subscription.amount %></td>
         <td><%= subscription.frequency %></td>
         <td><%= subscription.unit %></td>
