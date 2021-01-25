@@ -1,4 +1,4 @@
-![Continuous Integration](https://github.com/kcamcam/subs/workflows/Continuous%20Integration/badge.svg)
+![CI](https://github.com/kcamcam/subs/workflows/CI/badge.svg)
 [![BCH compliance](https://bettercodehub.com/edge/badge/kcamcam/subs?branch=master&token=d08e95874186b52849dd864c35495d31829e0dc9)](https://bettercodehub.com/)
 [![Maintainability](https://api.codeclimate.com/v1/badges/faa5692d537fa10bc4ce/maintainability)](https://codeclimate.com/github/kcamcam/subs/maintainability)
 [![codecov](https://codecov.io/gh/kcamcam/subs/branch/master/graph/badge.svg?token=EG1B7MIITW)](https://codecov.io/gh/kcamcam/subs)
