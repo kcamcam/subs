@@ -3,6 +3,7 @@ class CreateBrands < ActiveRecord::Migration[6.0]
     create_table :brands do |t|
       t.text :image
       t.string :name
+      t.string :url
       t.string :info
       t.string :category
 
