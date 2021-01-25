@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'login', to: 'auth0#login'
 
   # SUBSCRIPTIONS
+  resources :subscriptions
   resources :brands
 
   # USERS

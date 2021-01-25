@@ -7,10 +7,5 @@ RSpec.describe "Homes", type: :request do
       get "/"
       expect(response).to have_http_status(:success)
     end
-
-    it 'redirects un-authorized user' do
-      get "/"
-      expect(response).to redirect_to '/login'
-    end
   end
 end
