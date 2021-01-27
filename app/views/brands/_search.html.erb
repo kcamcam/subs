@@ -1,0 +1,12 @@
+<%= form_with url: brands_path, method: :get, local: true do |form| %>
+  <div class="form-floating mb-3">
+    <%= form.text_field :query, class: 'form-control', placeholder: 'search', value: params[:query] %>
+    <%= form.label :query do %>
+      <i class="fas fa-search"></i>&nbsp;search
+    <% end %>
+  </div>
+<% end %>
+
+<% if params[:query] %>
+  <%= link_to 'Clear', brands_path, class: 'btn btn-danger' %>
+<% end %>

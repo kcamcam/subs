@@ -1,6 +1,5 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Brands</h1>
+<%= render 'search' %>
 
 <table>
   <thead>
@@ -16,7 +15,7 @@
     <% @brands.each do |brand| %>
       <tr>
         <td><%= image_tag brand.image_url(:thumb), class: 'rounded'  %></td>
-        <td><%= brand.name %></td>
+        <td><%= brand.name.capitalize %></td>
         <td><%= brand.info %></td>
         <td><%= brand.category %></td>
         <td><%= link_to 'Show', brand %></td>

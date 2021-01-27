@@ -4,7 +4,8 @@ class BrandsController < ApplicationController
   # GET /brands
   # GET /brands.json
   def index
-    @brands = Brand.all
+    @brands = params[:query] ? Brand.search(params[:query]) : Brand.all
+    puts @brands.count
   end
 
   # GET /brands/1
@@ -68,6 +69,6 @@ class BrandsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def brand_params
-    params.require(:brand).permit(:image, :name, :url, :info, :category)
+    params.require(:brand).permit(:image, :name, :url, :info, :category, :query)
   end
 end
