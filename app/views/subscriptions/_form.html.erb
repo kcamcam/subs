@@ -2,7 +2,6 @@
   <% if subscription.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(subscription.errors.count, "error") %> prohibited this subscription from being saved:</h2>
-
       <ul>
         <% subscription.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -25,10 +24,7 @@
     <%= form.number_field :frequency %>
   </div>
 
-  <div class="field">
-    <%= form.label :unit %>
-    <%= form.text_field :unit %>
-  </div>
+  <%= form.select :unit, options_for_select(Subscription.units, selected: subscription[:unit]) %>
 
   <div class="actions">
     <%= form.submit %>

@@ -17,7 +17,7 @@
     <% @subscriptions.each do |subscription| %>
       <tr>
         <td><%= image_tag subscription.brand.image_url(:thumb), class: 'rounded' %></td>
-        <td><%= subscription.brand.name %></td>
+        <td><%= subscription.brand.name.capitalize %></td>
         <td><%= subscription.amount %></td>
         <td><%= subscription.frequency %></td>
         <td><%= subscription.unit %></td>
