@@ -4,7 +4,11 @@
 [![codecov](https://codecov.io/gh/kcamcam/subs/branch/master/graph/badge.svg?token=EG1B7MIITW)](https://codecov.io/gh/kcamcam/subs)
 
 # Subs
-A subscriptions tracker.
+A subscriptions tracker and reminder.
+- How much do you pay in a month or year on subscriptions?
+- What month has the most annual renewals?
+- Reminds you when a bill will be charged to your credit card.
+- Reminds you to cancel a subscription.
 
 # About
 - Ruby v3.0.0
