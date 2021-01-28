@@ -1,15 +1,19 @@
-#
-# Schema Info
+# == Schema Information
 #
 # Table name: brands
 #
-# name        :string:index
-# image       :text
-# url         :string
-# info        :string
-# category    :string
-# created_at  :datetime
-# updated_at  :datetime
+#  id         :bigint           not null, primary key
+#  category   :string
+#  image      :text
+#  info       :string
+#  name       :string           indexed
+#  url        :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+# Indexes
+#
+#  index_brands_on_name  (name) UNIQUE
 #
 class Brand < ApplicationRecord
   mount_uploader :image, ImageUploader

@@ -1,13 +1,16 @@
+# == Schema Information
 #
-# Schema Info
+# Table name: users
 #
-# Table name:  users
+#  id         :bigint           not null, primary key
+#  uid        :string           not null, indexed
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
-# uid         :string:index
-# created_at  :datetime
-# updated_at  :datetime
+# Indexes
 #
-
+#  index_users_on_uid  (uid) UNIQUE
+#
 class User < ApplicationRecord
   validates :uid, presence: true, uniqueness: true
   has_many :subscriptions

@@ -1,15 +1,25 @@
-#
-# Schema Info
+# == Schema Information
 #
 # Table name: subscriptions
 #
-# brand_id       :bigint:index
-# user_id        :bigint:index
-# amount         :decimal
-# frequency      :integer
-# unit           :string
-# created_at     :datetime
-# updated_at     :datetime
+#  id         :bigint           not null, primary key
+#  amount     :decimal(, )
+#  frequency  :integer
+#  unit       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  brand_id   :bigint           indexed
+#  user_id    :bigint           not null, indexed
+#
+# Indexes
+#
+#  index_subscriptions_on_brand_id  (brand_id)
+#  index_subscriptions_on_user_id   (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (brand_id => brands.id)
+#  fk_rails_...  (user_id => users.id)
 #
 class Subscription < ApplicationRecord
   belongs_to :brand
