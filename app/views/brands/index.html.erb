@@ -1,32 +1,39 @@
-<h1>Brands</h1>
+<div class="d-flex justify-content-between align-items-center">
+  <h1>Brands</h1>
+  <%= button_to 'New Brand', new_brand_path, method: :get, class: 'btn btn-dark'%>
+</div>
+
 <%= render 'search' %>
 
-<table>
+
+<table class="table text-center">
   <thead>
     <tr>
       <th>Company</th>
-      <th>Info</th>
+      <th>Name</th>
       <th>Category</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @brands.each do |brand| %>
-      <tr>
-        <td><%= image_tag brand.image_url(:thumb), class: 'rounded'  %></td>
-        <td><%= brand.name.capitalize %></td>
-        <td><%= brand.info %></td>
-        <td><%= brand.category %></td>
-        <td><%= link_to 'Show', brand %></td>
-        <td><%= link_to 'Edit', edit_brand_path(brand) %></td>
-        <td><%= link_to 'Destroy', brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Create Subscription', new_subscription_path(brand_id: brand.id), class: 'btn btn-sm btn-primary' %></td>
+      <tr class="align-middle">
+        <td>
+          <%= link_to brand do %>
+            <%= image_tag brand.image_url(:thumb), class: 'rounded' %>
+          <% end %>
+        </td>
+
+        <td>
+          <%= link_to brand.brand_name, brand %>
+        </td>
+
+        <td>
+          <%= link_to 'Create Subscription',
+                       new_subscription_path(brand_id: brand.id),
+                       class: 'btn btn-sm btn-primary' %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to 'New Brand', new_brand_path %>

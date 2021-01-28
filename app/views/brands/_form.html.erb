@@ -11,9 +11,14 @@
     </div>
   <% end %>
 
+  <div class="field pb-2">
+    <%= image_tag(brand.image_url, class: 'rounded') if brand.image? %>
+  </div>
+
   <div class="field">
-    <%= form.label :image %>
+    <%= form.label :image, brand.image.identifier %>
     <%= form.file_field :image %>
+    <%= form.hidden_field :image_cache %>
   </div>
 
   <div class="field">

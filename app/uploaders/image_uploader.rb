@@ -23,17 +23,15 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   # Processing methods: https://github.com/carrierwaveuploader/carrierwave#processing-methods-mini_magick
 
-  # Resize to fit keeps the original aspect ratio.
   process convert: 'png'
-  process resize_to_fit: [400, 400]
-
-  # Resize to fill crops if the aspect ratio requires it.
-  version :thumb do
-    process resize_to_fill: [64, 64]
-  end
+  process resize_to_fit: [256, 256]
 
   version :preview do
-    process resize_to_limit: [128, 128]
+    process resize_and_pad: [128, 128]
+  end
+
+  version :thumb do
+    process resize_and_pad: [64, 64]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

@@ -6,6 +6,7 @@ class CreateSubscriptions < ActiveRecord::Migration[6.0]
       t.decimal :amount
       t.integer :frequency
       t.string :unit
+      t.date :first_bill
 
       t.timestamps
     end

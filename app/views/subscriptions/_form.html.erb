@@ -10,21 +10,37 @@
     </div>
   <% end %>
 
-  <%= image_tag @brand.image_url(:preview) %>
-  <span class="h1"><%=@brand.name  %></span>
+  <%# brand_id %>
   <%= form.hidden_field :brand_id, value: @brand.id %>
 
+  <%# image %>
+  <%= image_tag @brand.image_url(:preview) %>
+  <span class="h1"><%=@brand.name  %></span>
+
   <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
+    <%= form.label :amount, class: 'form-label' %>
+    <%= form.text_field :amount, class: 'form-control' %>
+  </div>
+
+  <div class="row">
+    <%= form.label :frequency, class: 'form-label' %>
+    <div class="col">
+      every
+    </div>
+    <div class="col">
+      <%= form.number_field :frequency, class: 'form-control' %>
+    </div>
+    <div class="col">
+      <%= form.select :unit,
+          options_for_select(Subscription.units, selected: subscription[:unit]),
+          {}, { :class => 'form-select' } %>
+    </div>
   </div>
 
   <div class="field">
-    <%= form.label :frequency %>
-    <%= form.number_field :frequency %>
+    <%= form.label :first_bill, class: 'form-label' %>
+    <%= form.date_field :first_bill, class: 'form-control' %>
   </div>
-
-  <%= form.select :unit, options_for_select(Subscription.units, selected: subscription[:unit]) %>
 
   <div class="actions">
     <%= form.submit %>

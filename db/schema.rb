@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_002734) do
     t.decimal "amount"
     t.integer "frequency"
     t.string "unit"
+    t.date "first_bill"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["brand_id"], name: "index_subscriptions_on_brand_id"

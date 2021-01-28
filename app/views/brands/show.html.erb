@@ -24,5 +24,6 @@
   <%= @brand.category %>
 </p>
 
-<%= link_to 'Edit', edit_brand_path(@brand) %> |
-<%= link_to 'Back', brands_path %>
+<td><%= link_to 'Edit', edit_brand_path(@brand) %></td>
+<td><%= link_to 'Destroy', @brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+<%= link_to 'Back', brands_path, class: 'btn btn-sm btn-outline' %>
