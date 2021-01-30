@@ -1,4 +1,5 @@
 # https://docs.rubocop.org/rubocop/
+# https://github.com/rubocop-hq/rubocop/blob/master/config/default.yml
 
 AllCops:
     SuggestExtensions: false
@@ -14,6 +15,10 @@ Style/ConditionalAssignment:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: true
+  EnforcedStyleForMultiline: comma
 
 # Default is 80
 Layout/LineLength:
