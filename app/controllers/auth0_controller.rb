@@ -1,10 +1,21 @@
 class Auth0Controller < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :set_current_user
 
   def callback
     # This stores all the user information that came from Auth0 and the IdP
     session[:userinfo] = request.env['omniauth.auth']
-    User.first_or_create(uid: session[:userinfo][:uid])
+    userinfo = session[:userinfo].deep_symbolize_keys
+    user_hash = {
+      uid: userinfo[:uid],
+      name: userinfo.dig(:info, :name),
+      nickname: userinfo.dig(:info, :nickname),
+      given_name: userinfo.dig(:extra, :raw_info, :given_name),
+      family_name: userinfo.dig(:extra, :raw_info, :family_name),
+      locale: userinfo.dig(:extra, :raw_info, :locale),
+      email: userinfo.dig(:info, :email),
+      image: userinfo.dig(:info, :image),
+    }
+    User.where(uid: userinfo[:uid]).first_or_create.update(user_hash)
     # Redirect to the URL you want after successful auth
     redirect_to root_path
   end

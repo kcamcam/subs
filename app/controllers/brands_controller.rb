@@ -1,5 +1,6 @@
 class BrandsController < ApplicationController
-  before_action :set_brand, only: %i[show edit update destroy]
+  before_action :admin_only, only: %i[release]
+  before_action :set_brand, only: %i[show edit update destroy release]
 
   # GET /brands
   # GET /brands.json
@@ -24,6 +25,8 @@ class BrandsController < ApplicationController
   # POST /brands.json
   def create
     @brand = Brand.new(brand_params)
+    @brand.created_by = Current.user.id
+    @brand.custom = true
 
     respond_to do |format|
       if @brand.save
@@ -31,6 +34,21 @@ class BrandsController < ApplicationController
         format.json { render :show, status: :created, location: @brand }
       else
         format.html { render :new }
+        format.json { render json: @brand.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # release a brand from a users 'custom' limit cap
+  # TODO: only admin
+  # TODO: email notification to user that their brand has been released
+  def release
+    respond_to do |format|
+      if @brand.update(custom: false, released_by: Current.user.id, released_at: Time.current)
+        format.html { redirect_to @brand, notice: 'Brand has been released.' }
+        format.json { render :show, status: :ok, location: @brand }
+      else
+        format.html { render :index }
         format.json { render json: @brand.errors, status: :unprocessable_entity }
       end
     end
@@ -67,6 +85,6 @@ class BrandsController < ApplicationController
   end
 
   def brand_params
-    params.require(:brand).permit(:name, :url, :info, :category, :query, :image, :image_cache)
+    params.require(:brand).permit(:category, :custom, :image, :image_cache, :info, :name, :query, :url)
   end
 end

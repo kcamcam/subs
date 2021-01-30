@@ -9,8 +9,7 @@ RSpec.describe User, type: :model do
     expect(@user).to be_valid
   end
 
-  it 'is invalid with invalid attributes' do
-    # name should be unique
-    expect(build(:user)).to_not be_valid
+  it 'ensures UID is unique' do
+    expect(build(:user, id: 2, uid: @user.uid)).to_not be_valid
   end
 end

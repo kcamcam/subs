@@ -13,15 +13,9 @@
 
   <body>
     <div class="container py-2">
-      <div class="row mb-3">
-        <div class="col">
-          <%= render 'layouts/nav' %>
-        </div>
-      </div>
-      <div class="row">
-        <%= render 'layouts/flash' %>
-        <%= yield %>
-      </div>
+      <%= render 'layouts/nav' %>
+      <%= render 'layouts/flash' %>
+      <%= yield %>
     </div>
   </body>
 </html>

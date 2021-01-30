@@ -1,27 +1,6 @@
 module Auth0Helper
   private
 
-  # Set the @current_user or redirect to public page
-  def authenticate_user!
-    if user_signed_in?
-      @current_user = session[:userinfo]&.deep_symbolize_keys
-    else
-      redirect_to login_path, info: 'Please login first.'
-    end
-  end
-
-  # Is the user signed in?
-  # @return [Boolean]
-  def user_signed_in?
-    session[:userinfo].present?
-  end
-
-  # Who is the current_user?
-  # @return [Hash]
-  def current_user
-    @current_user
-  end
-
   def logout_url
     domain = Rails.application.credentials[:auth0_domain]
     client_id = Rails.application.credentials[:auth0_client_id]

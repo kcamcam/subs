@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'brands/edit', type: :view do
   before(:each) do
-    @brand = create(:brand)
+    @user = create(:user)
+    @brand = create(:brand, created_by: @user.id)
   end
 
   it 'renders the edit brand form' do

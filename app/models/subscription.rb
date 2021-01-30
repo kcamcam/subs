@@ -4,6 +4,7 @@
 #
 #  id         :bigint           not null, primary key
 #  amount     :decimal(, )
+#  enabled    :boolean          default(TRUE), not null
 #  first_bill :date
 #  frequency  :integer
 #  unit       :string
@@ -24,14 +25,18 @@
 #
 class Subscription < ApplicationRecord
   belongs_to :brand
-  belongs_to :user
+  belongs_to :user, required: true
   validates_numericality_of :frequency, greater_than: 0
   # eval('frequency.unit') to convert '7.days' to 7.days, see ActiveSupport::Duration::PARTS
-  enum unit: { years: 'years', months: 'months', weeks: 'weeks', days: 'days',
-               hours: 'hours', minutes: 'minutes', seconds: 'seconds' }
+  enum unit: { years: 'years', months: 'months', weeks: 'weeks', days: 'days' }
 
   # pluralize or singularize unit
   def units
     frequency > 1 ? unit : unit.singularize
+  end
+
+  # return a string of the frequency
+  def freq
+    "#{frequency} #{units}"
   end
 end

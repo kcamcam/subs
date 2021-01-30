@@ -29,7 +29,7 @@ class SubscriptionsController < ApplicationController
   def create
     @subscription = Subscription.new(subscription_params)
     @brand = @subscription.brand
-    @subscription.user = User.find_by(uid: @current_user[:uid])
+    @subscription.user = User.find_by(uid: Current.user[:uid])
 
     respond_to do |format|
       if @subscription.save
@@ -45,6 +45,7 @@ class SubscriptionsController < ApplicationController
   # PATCH/PUT /subscriptions/1
   # PATCH/PUT /subscriptions/1.json
   def update
+    @brand = Brand.find(@subscription.brand_id)
     respond_to do |format|
       if @subscription.update(subscription_params)
         format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
@@ -73,6 +74,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:brand_id, :amount, :frequency, :unit)
+    params.require(:subscription).permit(:brand_id, :amount, :frequency, :unit, :first_bill)
   end
 end

@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :set_current_user
+
   def index
-    @current_user = session[:userinfo]&.deep_symbolize_keys
+    Current.user = User.find_by(uid: session.dig('userinfo', 'uid')) if session['userinfo']
   end
 end

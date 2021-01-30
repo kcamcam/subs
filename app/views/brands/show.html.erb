@@ -1,29 +1,32 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <p>
+    <%= image_tag @brand.image_url(:preview), class: 'rounded' %>
+  </p>
 
-<p>
-  <%= image_tag @brand.image_url(:preview), class: 'rounded' %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @brand.brand_name %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @brand.name %>
-</p>
+  <p>
+    <strong>Name:</strong>
+    <%= @brand.url %>
+  </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @brand.url %>
-</p>
+  <p>
+    <strong>Info:</strong>
+    <%= @brand.info %>
+  </p>
 
-<p>
-  <strong>Info:</strong>
-  <%= @brand.info %>
-</p>
-
-<p>
-  <strong>Category:</strong>
-  <%= @brand.category %>
-</p>
-
-<td><%= link_to 'Edit', edit_brand_path(@brand) %></td>
-<td><%= link_to 'Destroy', @brand, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-<%= link_to 'Back', brands_path, class: 'btn btn-sm btn-outline' %>
+  <p>
+    <strong>Category:</strong>
+    <%= @brand.category %>
+  </p>
+</div>
+<div class="row">
+  <div class="col">
+    <%= link_to 'Edit', edit_brand_path(@brand), class: 'btn btn-sm btn-dark' %>
+    <%= link_to 'Releae', "/release/#{@brand.id}", class: 'btn btn-sm btn-dark' %>
+    <%= link_to 'Destroy', @brand, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+  </div>
+</div>

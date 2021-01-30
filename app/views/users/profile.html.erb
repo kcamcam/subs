@@ -1,6 +1,5 @@
 <div>
-  <img src="<%= current_user.dig(:info, :image) %>" class="img-thumbnail" alt="profile picture">
-  <h2><%= current_user.dig(:info, :nickname) %></h2>
-  <pre><%= JSON.pretty_generate(current_user.dig(:extra, :raw_info)) %></pre>
+  <img src="<%= Current.user.image %>" class="img rounded" alt="profile picture">
+  <h2><%= Current.user.nickname %></h2>
   <%= button_to 'Logout', logout_path, method: :get, class: 'btn btn-danger' %>
 </div>
