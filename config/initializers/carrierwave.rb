@@ -1,8 +1,8 @@
 CarrierWave.configure do |config|
   config.fog_credentials = {
     provider: 'AWS',
-    aws_access_key_id: ENV['DIGITAL_OCEAN_KEY'] || Rails.application.credentials[:digital_ocean_key],
-    aws_secret_access_key: ENV['DIGITAL_OCEAN_SECRET'] || Rails.application.credentials[:digital_ocean_secret],
+    aws_access_key_id: Rails.application.credentials[:digital_ocean_key],
+    aws_secret_access_key: Rails.application.credentials[:digital_ocean_secret],
     region: 'nyc3',
     endpoint: 'https://nyc3.digitaloceanspaces.com',
   }
