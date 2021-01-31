@@ -6,7 +6,6 @@ class BrandsController < ApplicationController
   # GET /brands.json
   def index
     @brands = params[:query] ? Brand.search(params[:query]) : Brand.all
-    puts @brands.count
   end
 
   # GET /brands/1

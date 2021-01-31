@@ -11,7 +11,7 @@ RSpec.describe 'subscriptions/index', type: :view do
   end
 
   it 'renders a list of subscriptions' do
-    puts render
+    render
     assert_select 'tr>td', text: nil.to_s, count: 2
     assert_select 'tr>td', text: nil.to_s, count: 2
     assert_select 'tr>td', text: @subscription1.amount.to_s, count: 1

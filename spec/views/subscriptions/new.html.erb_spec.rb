@@ -9,7 +9,7 @@ RSpec.describe 'subscriptions/new', type: :view do
   end
 
   it 'renders new subscription form' do
-    puts render
+    render
 
     assert_select 'form[action=?][method=?]', subscription_path(@subscription), 'post' do
       assert_select 'input[name=?]', 'subscription[brand_id]'
