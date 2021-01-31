@@ -1,9 +1,8 @@
 ---
 development:
   :concurrency: 5
-# Provisioned 20 threads in config/initializer/sidekiq.rb. Leave 5 for the Sidekiq server.
-# https://github.com/mperham/sidekiq/wiki/Using-Redis#complete-control
 production:
+  # always 5 less than the provisioned amount
   :concurrency: 15
 :queues:
   - high
