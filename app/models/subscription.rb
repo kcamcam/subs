@@ -35,7 +35,7 @@ class Subscription < ApplicationRecord
     frequency > 1 ? unit : unit.singularize
   end
 
-  # return a string of the frequency
+  # return the frequency & unit as a concatenated string
   def freq
     "#{frequency} #{units}"
   end

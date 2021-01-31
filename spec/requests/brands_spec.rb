@@ -39,16 +39,29 @@ RSpec.describe '/brands', type: :request do
       get brands_path
       expect(response).to be_successful
     end
+
+    it 'redirects un-authorized users' do
+      get brands_path
+      expect(response).to redirect_to '/login'
+    end
   end
 
   describe 'GET /show' do
+    before(:each) do
+      @brand = create(:brand, created_by: @user.id, released_by: @user.id)
+    end
+
     it 'renders a successful response' do
       allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
       allow_any_instance_of(Brand).to receive(:image_url).and_return('calendar.png')
-      brand = create(:brand, created_by: @user.id, released_by: @user.id)
 
-      get brand_url(brand)
+      get brand_url(@brand)
       expect(response).to be_successful
+    end
+
+    it 'redirects un-authorized users' do
+      get subscription_url(@brand)
+      expect(response).to redirect_to '/login'
     end
   end
 
@@ -66,17 +79,19 @@ RSpec.describe '/brands', type: :request do
   end
 
   describe 'GET /edit' do
+    before(:each) do
+      @brand = create(:brand, created_by: @user.id)
+    end
+
     it 'render a successful response' do
       allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
       allow_any_instance_of(Current).to receive(:user).and_return(@user)
-      brand = create(:brand, created_by: @user.id)
-      get edit_brand_url(brand)
+      get edit_brand_url(@brand)
       expect(response).to be_successful
     end
 
     it 'redirects un-authorized users' do
-      brand = create(:brand, created_by: @user.id)
-      get edit_brand_url(brand)
+      get edit_brand_url(@brand)
       expect(response).to redirect_to '/login'
     end
   end
@@ -128,6 +143,10 @@ RSpec.describe '/brands', type: :request do
   end
 
   describe 'PATCH /update' do
+    before(:each) do
+      @brand = create(:brand, created_by: @user.id)
+    end
+
     context 'with valid parameters' do
       let(:new_attributes) do
         { image: 'calendar.png', name: 'NewName', category: 'NewCategory', info: 'NewInfo' }
@@ -136,27 +155,26 @@ RSpec.describe '/brands', type: :request do
       it 'updates the requested brand' do
         allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
         allow_any_instance_of(Current).to receive(:user).and_return(@user)
-        brand = create(:brand, created_by: @user.id)
-        patch brand_url(brand), params: { brand: new_attributes }
-        brand.reload
-        expect(brand.name).to eq('NewName'.downcase)
-        expect(brand.category).to eq('NewCategory')
-        expect(brand.info).to eq('NewInfo')
+
+        patch brand_url(@brand), params: { brand: new_attributes }
+        @brand.reload
+        expect(@brand.name).to eq('NewName'.downcase)
+        expect(@brand.category).to eq('NewCategory')
+        expect(@brand.info).to eq('NewInfo')
       end
 
       it 'redirects to the brand' do
         allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
         allow_any_instance_of(Current).to receive(:user).and_return(@user)
-        brand = create(:brand, created_by: @user.id)
-        patch brand_url(brand), params: { brand: new_attributes }
-        brand.reload
-        expect(response).to redirect_to(brand_url(brand))
+
+        patch brand_url(@brand), params: { brand: new_attributes }
+        @brand.reload
+        expect(response).to redirect_to(brand_url(@brand))
       end
 
       it 'redirects un-authorized users' do
-        brand = create(:brand, created_by: @user.id)
-        patch brand_url(brand), params: { brand: new_attributes }
-        brand.reload
+        patch brand_url(@brand), params: { brand: new_attributes }
+        @brand.reload
         expect(response).to redirect_to '/login'
       end
     end
@@ -165,40 +183,41 @@ RSpec.describe '/brands', type: :request do
       it "renders a successful response (i.e. to display the 'edit' template)" do
         allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
         allow_any_instance_of(Current).to receive(:user).and_return(@user)
-        brand = create(:brand, created_by: @user.id)
-        patch brand_url(brand), params: { brand: invalid_attributes }
+
+        patch brand_url(@brand), params: { brand: invalid_attributes }
         expect(response).to be_successful
       end
 
       it 'redirects un-authorized users' do
-        brand = create(:brand, created_by: @user.id)
-        patch brand_url(brand), params: { brand: invalid_attributes }
+        patch brand_url(@brand), params: { brand: invalid_attributes }
         expect(response).to redirect_to '/login'
       end
     end
   end
 
   describe 'DELETE /destroy' do
+    before(:each) do
+      @brand = create(:brand, created_by: @user.id)
+    end
     it 'destroys the requested brand' do
       allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
       allow_any_instance_of(Current).to receive(:user).and_return(@user)
-      brand = create(:brand, created_by: @user.id)
+
       expect do
-        delete brand_url(brand)
+        delete brand_url(@brand)
       end.to change(Brand, :count).by(-1)
     end
 
     it 'redirects to the brands list' do
       allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
       allow_any_instance_of(Current).to receive(:user).and_return(@user)
-      brand = create(:brand, created_by: @user.id)
-      delete brand_url(brand)
+
+      delete brand_url(@brand)
       expect(response).to redirect_to(brands_url)
     end
 
     it 'redirects un-authorized users' do
-      brand = create(:brand, created_by: @user.id)
-      delete brand_url(brand)
+      delete brand_url(@brand)
       expect(response).to redirect_to '/login'
     end
   end

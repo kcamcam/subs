@@ -12,4 +12,9 @@ RSpec.describe User, type: :model do
   it 'ensures UID is unique' do
     expect(build(:user, id: 2, uid: @user.uid)).to_not be_valid
   end
+
+  it 'ensures UID is present' do
+    @user.uid = nil
+    expect(@user).to_not be_valid
+  end
 end

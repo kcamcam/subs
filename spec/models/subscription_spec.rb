@@ -15,4 +15,19 @@ RSpec.describe Subscription, type: :model do
     @subscription.user_id = nil
     expect(@subscription).to_not be_valid
   end
+
+  it 'ensures frequency is positive' do
+    @subscription.frequency = 0
+    expect(@subscription).to_not be_valid
+  end
+
+  it 'ensures unit gets singularized' do
+    @subscription.update(frequency: 1, unit: 'days')
+    expect(@subscription.units).to eq('day')
+  end
+
+  it 'ensures the frequency & unit get concatenated' do
+    @subscription.update(frequency: 1, unit: 'days')
+    expect(@subscription.freq).to eq('1 day')
+  end
 end
