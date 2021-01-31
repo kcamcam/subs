@@ -3,6 +3,10 @@ Rails.application.routes.draw do
   # SIDEKIQ
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
+  # authenticate :user, lambda { |u| u.admin? } do
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
+  # get '/sidekiq' => redirect('/')
 
   # AUTH0
   get 'auth/auth0/callback',  to: 'auth0#callback'
