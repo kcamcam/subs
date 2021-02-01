@@ -36,7 +36,7 @@ brew services start redis
 Postgres  
 ```bash
 # psql --version
-brew install postgre
+brew install postgres
 brew services start postgres
 ```
 
