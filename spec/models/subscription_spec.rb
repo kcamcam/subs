@@ -23,7 +23,7 @@ RSpec.describe Subscription, type: :model do
 
   it 'ensures unit gets singularized' do
     @subscription.update(frequency: 1, unit: 'days')
-    expect(@subscription.units).to eq('day')
+    expect(units(@subscription)).to eq('day')
   end
 
   it 'ensures the frequency & unit get concatenated' do

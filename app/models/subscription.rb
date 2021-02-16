@@ -29,14 +29,4 @@ class Subscription < ApplicationRecord
   validates_numericality_of :frequency, greater_than: 0
   # eval('frequency.unit') to convert '7.days' to 7.days, see ActiveSupport::Duration::PARTS
   enum unit: { years: 'years', months: 'months', weeks: 'weeks', days: 'days' }
-
-  # pluralize or singularize unit
-  def units
-    frequency > 1 ? unit : unit.singularize
-  end
-
-  # return the frequency & unit as a concatenated string
-  def freq
-    "#{frequency} #{units}"
-  end
 end
