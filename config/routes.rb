@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'login',                to: 'auth0#login'
 
   # SUBSCRIPTIONS
+  get 'dashboard/index'
   resources :subscriptions
   resources :brands
   get 'release/:id', to: 'brands#release'

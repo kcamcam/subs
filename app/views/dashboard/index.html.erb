@@ -1,0 +1,3 @@
+<h1><%= number_to_currency(@subscriptions.sum(:amount)) %></h1>
+<% amounts = Subscription.group(:brand_id).sum(:amount).map { |k,v| [Brand.find(k).name.capitalize, v] }.to_h %>
+<%= pie_chart amounts, prefix: "$", round: 2 %>
