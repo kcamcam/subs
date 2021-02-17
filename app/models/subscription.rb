@@ -27,6 +27,17 @@ class Subscription < ApplicationRecord
   belongs_to :brand
   belongs_to :user, required: true
   validates_numericality_of :frequency, greater_than: 0
-  # eval('frequency.unit') to convert '7.days' to 7.days, see ActiveSupport::Duration::PARTS
   enum unit: { years: 'years', months: 'months', weeks: 'weeks', days: 'days' }
+
+  # convert the frequency.unit into a Duration object. ex: '15 days' to 15 days
+  def duration
+    frequency.to_i.send(unit)
+  end
+
+  # ActiveSupport::Duration::PARTS
+  # @param { String } period (days, weeks, months, or years)
+  def amount_in(period = 'months')
+    period = 'months' unless Subscription.units.include?(period)
+    amount / duration.send("in_#{period}")
+  end
 end
