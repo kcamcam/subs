@@ -1,3 +1,58 @@
-<h1><%= number_to_currency(@subscriptions.sum(:amount)) %></h1>
-<% amounts = Subscription.group(:brand_id).sum(:amount).map { |k,v| [Brand.find(k).name.capitalize, v] }.to_h %>
-<%= pie_chart amounts, prefix: "$", round: 2 %>
+<div class="row" data-masonry='{"percentPosition": true }' style="position: relative; height: 714px;">
+  <%# Total %>
+  <div class="col-md-4">
+    <div class="card text-white bg-primary">
+      <div class="card-body">
+        <h1 class="card-title"><%= number_to_currency(@total) %></h1>
+        <h6 class="card-subtitle mb-2">per <%= params[:duration]&.singularize %></h6>
+        <%= link_to 'Day', dashboard_index_path(duration: 'days'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('days')}" %>
+        <%= link_to 'Week', dashboard_index_path(duration: 'weeks'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('weeks')}" %>
+        <%= link_to 'Month', dashboard_index_path(duration: 'months'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('months')}" %>
+        <%= link_to 'Year', dashboard_index_path(duration: 'years'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('years')}" %>
+      </div>
+    </div>
+  </div>
+
+  <%# Pie Chart %>
+  <div class="col-md-4">
+    <%# https://chartkick.com/ %>
+    <% amounts = Subscription.group(:brand_id).sum(:amount).map { |k,v| [Brand.find(k).name.capitalize, v] }.to_h %>
+    <%= pie_chart amounts, prefix: "$", round: 2 %>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="card-link">Card link</a>
+        <a href="#" class="card-link">Another link</a>
+      </div>
+    </div>
+  </div>
+</div>

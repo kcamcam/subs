@@ -7,9 +7,6 @@ require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
-require("chartkick")
-require("chart.js")
-require("masonry")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -18,6 +15,10 @@ require("masonry")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+require("chartkick")
+require("chart.js")
+require("masonry-layout")
 
 import "bootstrap"
 import "@fortawesome/fontawesome-free/css/all.css";
