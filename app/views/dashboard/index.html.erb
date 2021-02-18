@@ -1,14 +1,51 @@
+<nav class="nav nav-pills nav-fill mb-4">
+  <%= render 'duration_button', duration: 'days' %>
+  <%= render 'duration_button', duration: 'weeks' %>
+  <%= render 'duration_button', duration: 'months' %>
+  <%= render 'duration_button', duration: 'years' %>
+</nav>
+
 <div class="row" data-masonry='{"percentPosition": true }'>
-  <%# Total %>
-  <div class="col-md-4 mb-4">
+  <%# All %>
+  <div class="col-md-3 mb-4">
+    <div class="card text-dark bg-light">
+      <ul class="list-group list-group-flush">
+        <% @totals.each do |brand, amount| %>
+          <li class="list-group-item text-dark"><%= brand %> <strong><%= number_to_currency(amount) %></strong> per <%= params[:duration]&.singularize %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <%# Least expsnive %>
+  <div class="col-md-3 mb-4">
     <div class="card text-white bg-primary">
       <div class="card-body">
-        <h1 class="card-title"><%= number_to_currency(@total) %></h1>
-        <h6 class="card-subtitle mb-2">per <%= params[:duration]&.singularize %></h6>
-        <%= link_to 'Day', dashboard_index_path(duration: 'days'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('days')}" %>
-        <%= link_to 'Week', dashboard_index_path(duration: 'weeks'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('weeks')}" %>
-        <%= link_to 'Month', dashboard_index_path(duration: 'months'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('months')}" %>
-        <%= link_to 'Year', dashboard_index_path(duration: 'years'), class: "btn btn-sm btn-primary #{'active' if params[:duration].eql?('years')}" %>
+        <h6 class="card-subtitle mb-2"> Least Expensive</h6>
+        <h1 class="card-title display-4"><%= @totals.first[0] %></h1>
+        <h6 class="card-subtitle mb-2">At <%= number_to_currency(@totals.first[1]) %> per <%= params[:duration]&.singularize %></h6>
+      </div>
+    </div>
+  </div>
+
+  <%# Most expensive %>
+  <div class="col-md-3 mb-4">
+    <div class="card text-white bg-danger">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2"> Most Expensive</h6>
+        <h1 class="card-title display-4"><%= @totals.last[0] %></h1>
+        <h6 class="card-subtitle mb-2">At <%= number_to_currency(@totals.last[1]) %> per <%= params[:duration]&.singularize %></h6>
+      </div>
+    </div>
+  </div>
+
+  <%# Total %>
+  <div class="col-md-3 mb-4">
+    <div class="card text-dark bg-light">
+      <div class="card-body">
+        <h6 class="card-subtitle mb-2"> Total</h6>
+        <h1 class="card-title display-4"><%= number_to_currency(@total) %></h1>
+        <h6 class="card-subtitle mb-2">Per <%= params[:duration]&.singularize %></h6>
       </div>
     </div>
   </div>
@@ -16,7 +53,11 @@
   <%# Pie Chart %>
   <div class="col-md-4 mb-4">
     <%# https://chartkick.com/ %>
-    <% amounts = Subscription.group(:brand_id).sum(:amount).map { |k,v| [Brand.find(k).name.capitalize, v] }.to_h %>
-    <%= pie_chart amounts, prefix: "$", round: 2 %>
+    <%= pie_chart @totals, prefix: "$", round: 2, donut: true, suffix: " per #{params[:duration]&.singularize}" %>
+  </div>
+
+  <%# Column Chart %>
+  <div class="col-md-6 mb-4">
+    <%= column_chart @totals, prefix: "$", round: 2, suffix: " per #{params[:duration]&.singularize}" %>
   </div>
 </div>

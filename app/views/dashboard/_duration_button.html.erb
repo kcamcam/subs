@@ -1,0 +1,4 @@
+<%= link_to duration.singularize.upcase,
+            dashboard_index_path(duration: duration),
+            role: 'button',
+            class: "nav-link #{'active' if params[:duration].eql?(duration)}" %>
