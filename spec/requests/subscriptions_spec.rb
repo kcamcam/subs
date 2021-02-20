@@ -28,6 +28,7 @@ RSpec.describe '/subscriptions', type: :request do
   describe 'GET /index' do
     it 'renders a successful response' do
       allow_any_instance_of(ApplicationController).to receive(:set_current_user).and_return(@user)
+      allow_any_instance_of(Current).to receive(:user).and_return(@user)
       allow_any_instance_of(Brand).to receive(:image_url).and_return('calendar.png')
       subscription1 = create(:subscription, user_id: @user.id, brand_id: @brand.id)
       subscription2 = create(:subscription, user_id: @user.id, brand_id: @brand.id, id: 2)
