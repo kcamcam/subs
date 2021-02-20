@@ -1,8 +1,8 @@
 <nav class="nav nav-pills nav-fill mb-4">
-  <%= render 'duration_button', duration: 'days' %>
-  <%= render 'duration_button', duration: 'weeks' %>
-  <%= render 'duration_button', duration: 'months' %>
-  <%= render 'duration_button', duration: 'years' %>
+  <%= render 'nav_button', duration: 'days' %>
+  <%= render 'nav_button', duration: 'weeks' %>
+  <%= render 'nav_button', duration: 'months' %>
+  <%= render 'nav_button', duration: 'years' %>
 </nav>
 
 <div class="row" data-masonry='{"percentPosition": true }'>
@@ -19,7 +19,7 @@
 
   <%# Least expsnive %>
   <div class="col-md-3 mb-4">
-    <div class="card text-white bg-primary">
+    <div class="card text-white bg-success">
       <div class="card-body">
         <h6 class="card-subtitle mb-2"> Least Expensive</h6>
         <h1 class="card-title display-4"><%= @totals.first[0] %></h1>
@@ -39,12 +39,15 @@
     </div>
   </div>
 
+
   <%# Total %>
+  <%# Hidden value for odometer %>
+  <input id="total-value" value="<%= @total %>" hidden="true" />
   <div class="col-md-3 mb-4">
     <div class="card text-dark bg-light">
       <div class="card-body">
         <h6 class="card-subtitle mb-2"> Total</h6>
-        <h1 class="card-title display-4"><%= number_to_currency(@total) %></h1>
+        <h1 class="card-title display-4"><span class="odometer" id="odometer">0.00</span></h1>
         <h6 class="card-subtitle mb-2">Per <%= params[:duration]&.singularize %></h6>
       </div>
     </div>

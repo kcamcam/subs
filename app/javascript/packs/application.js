@@ -16,10 +16,16 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
+// PACKAGES
 require("chartkick")
 require("chart.js")
 require("masonry-layout")
+require("odometer")
 
+// STYLING
 import "bootstrap"
-import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/css/all.css"
 import "../stylesheets/application"
+
+// CUSTOM SCRIPTS
+require("custom/dashboard")

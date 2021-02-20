@@ -12,6 +12,7 @@
     "chart.js": "^2.9.4",
     "chartkick": "^3.2.1",
     "masonry-layout": "^4.2.2",
+    "odometer": "^0.4.8",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
